@@ -598,7 +598,7 @@ void MemoryMetric::CalculateFragmentation()
         if (mPlatform == Platform::AMLOGIC || mPlatform == Platform::AMLOGIC_950D4) {
             columnCount = 15;
         } else if (mPlatform == Platform::REALTEK) {
-            columnCount = 17;
+            columnCount = 15;
         } else if (mPlatform == Platform::REALTEK64) {
 		/* ES1 has 15 columns */
             columnCount = 15;
