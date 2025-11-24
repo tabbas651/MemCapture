@@ -176,9 +176,12 @@ void signalHandler(int signal)
 
 int main(int argc, char *argv[])
 {
+    LOG_INFO("Staring Memcapture to parse args");
     parseArgs(argc, argv);
-
+    LOG_INFO("Args parse complete");
+    
     // Get start time
+    LOG_INFO("Chekcing the CLOCK");
     auto start = std::chrono::steady_clock::now();
 
     // Configure signals to stop and clean up
@@ -196,6 +199,7 @@ int main(int argc, char *argv[])
         LOG_WARN("Failed to set nice value");
     }
 
+    LOG_INFO("Create DIR folder to generate output");
     try {
         std::filesystem::create_directories(gOutputDirectory);
     } catch (std::filesystem::filesystem_error &e) {
