@@ -25,5 +25,6 @@ enum class Platform
     AMLOGIC_950D4,
     REALTEK,
     REALTEK64,
-    BROADCOM
+    BROADCOM,
+    MEDIATEK
 };

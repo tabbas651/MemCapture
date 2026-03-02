@@ -46,7 +46,7 @@ MemoryMetric::MemoryMetric(Platform platform, std::shared_ptr<JsonReportGenerato
     // Create a map of CMA regions that converts the directories in /sys/kernel/debug/cma/ to a human-readable name
     // based on the kernel DTS file
     // *** This will likely need updating for your particular device ***
-    if (platform == Platform::AMLOGIC) {
+    if (platform == Platform::AMLOGIC || platform == Platform::MEDIATEK) {
         mCmaNames = {
                 std::make_pair("cma-0", "secmon_reserved"),
                 std::make_pair("cma-1", "logo_reserved"),
@@ -603,6 +603,8 @@ void MemoryMetric::CalculateFragmentation()
 		/* ES1 has 15 columns */
             columnCount = 15;
         } else if (mPlatform == Platform::BROADCOM) {
+            columnCount = 15;
+        } else if (mPlatform == Platform::MEDIATEK) {
             columnCount = 15;
         }
 

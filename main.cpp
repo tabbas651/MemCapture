@@ -75,7 +75,7 @@ static void displayUsage()
     printf("    -o, --output-dir    Directory to save results in\n");
     printf("    -j, --json          Save data as JSON in addition to HTML report\n");
     printf("    -d, --duration      Amount of time (in seconds) to capture data for. Default 30 seconds\n");
-    printf("    -p, --platform      Platform we're running on. Supported options = ['AMLOGIC', 'AMLOGIC_950D4', 'REALTEK', 'REALTEK64', 'BROADCOM']. Defaults to Amlogic\n");
+    printf("    -p, --platform      Platform we're running on. Supported options = ['AMLOGIC', 'AMLOGIC_950D4', 'REALTEK', 'REALTEK64', 'BROADCOM', 'MEDIATEK']. Defaults to Amlogic\n");
     printf("    -g, --groups        Path to JSON file containing the group mappings (optional)\n");
     printf("    -c, --cpuidle       Enable CPU Idle metrics (default to false, requires kernel support)\n");
 }
@@ -124,6 +124,8 @@ static void parseArgs(const int argc, char **argv)
                     gPlatform = Platform::REALTEK64;
                 } else if (platform == "BROADCOM") {
                     gPlatform = Platform::BROADCOM;
+                } else if (platform == "MEDIATEK") {
+                    gPlatform = Platform::MEDIATEK;
                 } else {
                     fprintf(stderr, "Warning: Unsupported platform %s\n", platform.c_str());
                     exit(EXIT_FAILURE);
