@@ -436,9 +436,10 @@ void MemoryMetric::GetGpuMemoryUsage()
 
         switch (mPlatform) {
             case (Platform::AMLOGIC): 
-            case (Platform::AMLOGIC_950D4): 
+            case (Platform::AMLOGIC_950D4):
+            case (Platform::MEDIATEK):
             {
-                GetGpuMemoryUsageAmlogic();
+                GetGpuMemoryUsage();
                 break;
             }
             case (Platform::REALTEK): 
@@ -782,7 +783,7 @@ void MemoryMetric::GetGpuMemoryUsageBroadcom()
     f1bb1000      14292      16359
     f18c0000      10899       4887
 */
-void MemoryMetric::GetGpuMemoryUsageAmlogic()
+void MemoryMetric::GetGpuMemoryUsage()
 {
     std::ifstream gpuMem("/sys/kernel/debug/mali0/gpu_memory");
 

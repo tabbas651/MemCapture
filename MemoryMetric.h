@@ -65,7 +65,7 @@ private:
     // GPU measurements per platform
     void GetGpuMemoryUsageBroadcom();
 
-    void GetGpuMemoryUsageAmlogic();
+    void GetGpuMemoryUsage();
 
     void GetGpuMemoryUsageRealtek();
 
