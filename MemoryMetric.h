@@ -65,8 +65,6 @@ private:
     // GPU measurements per platform
     void GetGpuMemoryUsageBroadcom();
 
-    void GetGpuMemoryUsage();
-
     void GetGpuMemoryUsageRealtek();
 
     pid_t tidToParentPid(pid_t tid);

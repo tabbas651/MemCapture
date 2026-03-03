@@ -46,7 +46,7 @@ MemoryMetric::MemoryMetric(Platform platform, std::shared_ptr<JsonReportGenerato
     // Create a map of CMA regions that converts the directories in /sys/kernel/debug/cma/ to a human-readable name
     // based on the kernel DTS file
     // *** This will likely need updating for your particular device ***
-    if (platform == Platform::AMLOGIC || platform == Platform::MEDIATEK) {
+    if (platform == Platform::AMLOGIC) {
         mCmaNames = {
                 std::make_pair("cma-0", "secmon_reserved"),
                 std::make_pair("cma-1", "logo_reserved"),
@@ -94,6 +94,11 @@ MemoryMetric::MemoryMetric(Platform platform, std::shared_ptr<JsonReportGenerato
                 std::make_pair("cma-WiFi@4C0000", "cma-WiFi@4C0000"),
                 std::make_pair("cma-reserved", "cma-reserved")
         };
+    } else if (platform == Platform::MEDIATEK) {
+        mCmaNames = {
+                std::make_pair("cma-cma_23", "cma-cma_23"),
+                std::make_pair("cma-reserved", "cma-reserved")
+        };
     }
 
     // Create static measurements for linux memory usage - store in KB
@@ -135,6 +140,13 @@ MemoryMetric::MemoryMetric(Platform platform, std::shared_ptr<JsonReportGenerato
             mMemoryBandwidthSupported = false;
             mGPUMemorySupported = true;
             break;
+        case Platform::MEDIATEK:
+            // Mediatek does not report memory bandwidth
+            mMemoryBandwidthSupported = false;
+            // Mediatek reports GPU memory allocations
+            mGPUMemorySupported = true;
+            break;
+
     }
 
 }
@@ -782,6 +794,16 @@ void MemoryMetric::GetGpuMemoryUsageBroadcom()
     f1c19000      14438        135
     f1bb1000      14292      16359
     f18c0000      10899       4887
+*******************************************************
+Mediatek GPU memory allocation
+cat /sys/kernel/debug/mali0/gpu_memory
+mali0                  39241      63910
+  kctx-0x000000009c7f034f (8338)       1224      11876
+  kctx-0x00000000d12961fe (8313)         42         42
+  kctx-0x00000000ccb28112 (4858)      31980      42542
+  kctx-0x00000000bdeb0aeb (4842)       5268       7064
+  kctx-0x00000000e67451b7 (4412)        109        125
+  kctx-0x0000000045485fee (3817)        618       3425
 */
 void MemoryMetric::GetGpuMemoryUsage()
 {
