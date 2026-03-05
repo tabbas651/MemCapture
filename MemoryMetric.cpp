@@ -441,7 +441,7 @@ void MemoryMetric::GetCmaMemoryUsage()
     }
 }
 
-void MemoryMetric::GetGpuMemoryUsage()
+void MemoryMetric::GetGpuMemoryUsageAmlogicMediatek()
 {
     if (mGPUMemorySupported) {
         //LOG_INFO("Getting GPU memory usage");
@@ -451,7 +451,7 @@ void MemoryMetric::GetGpuMemoryUsage()
             case (Platform::AMLOGIC_950D4):
             case (Platform::MEDIATEK):
             {
-                GetGpuMemoryUsage();
+                GetGpuMemoryUsageAmlogicMediatek();
                 break;
             }
             case (Platform::REALTEK): 
